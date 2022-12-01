@@ -2,32 +2,66 @@ package com.example.livedatadatabindingstudy
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModelProvider
 import com.example.livedatadatabindingstudy.databinding.ActivityMainBinding
+import kotlin.math.log
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    val liveText: MutableLiveData<String> = MutableLiveData()
-    var value = 0
+    private val viewModel: MainViewModel by lazy {
+        ViewModelProvider(this)[MainViewModel::class.java]
+    }
+
+    companion object {
+        const val TAG = "MainActivity"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
-        binding.apply {
-            lifecycleOwner = this@MainActivity
-            activity = this@MainActivity
-        }
-        liveText.value = "hello"
-        liveText.observe(this){
+        logger("onCreate")
+        //viewModel = MainViewModel() 작동안됨
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding.lifecycleOwner = this
+        binding.viewmodel = viewModel
+        viewModel.liveText.observe(this) {
             binding.text.text = it
         }
-        binding.plus.setOnClickListener {
-            value += 1
-            liveText.value = "$value"
-        }
-        binding.minus.setOnClickListener {
-            value -= 1
-            liveText.value = "$value"
-        }
+    }
+
+    private fun logger(message: String) {
+        Log.e(TAG, message)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        logger("onPause")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        logger("onResume")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        logger("onDestroy")
+    }
+
+    override fun onStart() {
+        super.onStart()
+        logger("onStart")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        logger("onStop")
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        logger("onRestart")
     }
 }

@@ -4,8 +4,8 @@
     <data>
 
         <variable
-            name="activity"
-            type="com.example.livedatadatabindingstudy.MainActivity" />
+            name="viewmodel"
+            type="com.example.livedatadatabindingstudy.MainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -19,7 +19,7 @@
             android:id="@+id/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{activity.liveText}"
+            android:text="@{viewmodel.liveText}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -31,6 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="plus"
+            android:onClick="@{() -> viewmodel.plus()}"
             app:layout_constraintEnd_toEndOf="@+id/text"
             app:layout_constraintStart_toStartOf="@+id/text"
             app:layout_constraintTop_toBottomOf="@+id/text" />
@@ -40,6 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="minus"
+            android:onClick="@{() -> viewmodel.minus()}"
             app:layout_constraintEnd_toEndOf="@+id/plus"
             app:layout_constraintStart_toStartOf="@+id/plus"
             app:layout_constraintTop_toBottomOf="@+id/plus" />
