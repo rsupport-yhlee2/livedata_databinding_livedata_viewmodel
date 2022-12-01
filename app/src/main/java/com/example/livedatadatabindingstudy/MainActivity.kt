@@ -26,8 +26,8 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.lifecycleOwner = this
         binding.viewmodel = viewModel
-        viewModel.liveText.observe(this) {
-            binding.text.text = it
+        viewModel.liveText.observe(this) { currentScore ->
+            binding.text.text = currentScore.toString()
         }
     }
 

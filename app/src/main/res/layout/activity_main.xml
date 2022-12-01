@@ -30,18 +30,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="plus"
+            android:enabled="@{viewmodel.plusEnabled}"
             android:onClick="@{() -> viewmodel.plus()}"
+            android:text="plus"
             app:layout_constraintEnd_toEndOf="@+id/text"
             app:layout_constraintStart_toStartOf="@+id/text"
             app:layout_constraintTop_toBottomOf="@+id/text" />
+
         <Button
             android:id="@+id/minus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="minus"
+            android:enabled="@{viewmodel.minusEnabled}"
             android:onClick="@{() -> viewmodel.minus()}"
+            android:text="minus"
             app:layout_constraintEnd_toEndOf="@+id/plus"
             app:layout_constraintStart_toStartOf="@+id/plus"
             app:layout_constraintTop_toBottomOf="@+id/plus" />
